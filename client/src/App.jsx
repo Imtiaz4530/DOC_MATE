@@ -1,4 +1,4 @@
-import { useEffect, Suspense } from "react";
+import { useEffect, Suspense, useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { useStoreActions, useStoreState } from "easy-peasy";
 import { Box } from "@mui/material";
@@ -10,13 +10,28 @@ import Footer from "./components/Common/Footer";
 const App = () => {
   const authUser = useStoreState((state) => state.user.user);
   const setUser = useStoreActions((actions) => actions.user.setUser);
+  const initializeSocket = useStoreActions(
+    (actions) => actions.socket.initializeSocket
+  );
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
+    setLoading(false);
   }, [setUser]);
+
+  useEffect(() => {
+    if (authUser) {
+      initializeSocket();
+    }
+  }, [authUser, initializeSocket]);
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <Box>
