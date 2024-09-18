@@ -9,6 +9,9 @@ const Login = lazy(() => import("../pages/Auth/Login"));
 const Register = lazy(() => import("../pages/Auth/Register"));
 const Profile = lazy(() => import("../pages/Profile/Profile"));
 const DoctorList = lazy(() => import("../pages/DoctorList/DoctorList"));
+const ScheduleAppointment = lazy(() =>
+  import("../pages/ScheduleAppointment/ScheduleAppointment")
+);
 const NotFound = lazy(() => import("../pages/NotFound/NotFound"));
 const TermsAndConditions = lazy(() =>
   import("../pages/TermsAndCondition/TermsAndConditions")
@@ -34,6 +37,15 @@ const AppRoutes = ({ authUser }) => (
     <Route
       path="/doctors"
       element={<PrivateRoute element={DoctorList} allowedRoles={["patient"]} />}
+    />
+    <Route
+      path="/appointments/book"
+      element={
+        <PrivateRoute
+          element={ScheduleAppointment}
+          allowedRoles={["patient"]}
+        />
+      }
     />
     <Route path="*" element={<NotFound />} />
   </Routes>
