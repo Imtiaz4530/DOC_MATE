@@ -15,6 +15,7 @@ const AppointmentDashboard = lazy(() =>
 const DoctorDashboard = lazy(() =>
   import("../pages/DoctorDashboard/DoctorDashboard")
 );
+const Chat = lazy(() => import("../pages/Chat/Chat"));
 const ScheduleAppointment = lazy(() =>
   import("../pages/ScheduleAppointment/ScheduleAppointment")
 );
@@ -39,6 +40,10 @@ const AppRoutes = ({ authUser }) => (
     <Route
       path="/profile"
       element={authUser ? <Profile /> : <Navigate to="/login" />}
+    />
+    <Route
+      path="/chat"
+      element={authUser ? <Chat /> : <Navigate to="/login" />}
     />
     <Route
       path="/doctors"
