@@ -41,7 +41,7 @@ const AuthForm = ({ title, fields, onSubmit, buttonLabel, loading }) => {
     <Container
       maxWidth="lg"
       sx={{
-        height: "100vh",
+        minHeight: "100vh",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
