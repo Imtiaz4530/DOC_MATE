@@ -1,8 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 import { useStoreActions, useStoreState } from "easy-peasy";
-import AppRoutes from "./routes/AppRoutes";
 import { Box } from "@mui/material";
+
+import AppRoutes from "./routes/AppRoutes";
+import LoadingSpinner from "./components/Common/LoadingSpinner";
+import Footer from "./components/Common/Footer";
 
 const App = () => {
   const authUser = useStoreState((state) => state.user.user);
@@ -17,7 +20,10 @@ const App = () => {
 
   return (
     <Box>
-      <AppRoutes authUser={authUser} />
+      <Suspense fallback={<LoadingSpinner />}>
+        <AppRoutes authUser={authUser} />
+      </Suspense>
+      <Footer />
       <Toaster />
     </Box>
   );
