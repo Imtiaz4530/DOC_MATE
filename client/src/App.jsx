@@ -5,6 +5,7 @@ import { Box } from "@mui/material";
 
 import AppRoutes from "./routes/AppRoutes";
 import LoadingSpinner from "./components/Common/LoadingSpinner";
+import Navbar from "./components/Common/Navbar";
 import Footer from "./components/Common/Footer";
 
 const App = () => {
@@ -35,6 +36,7 @@ const App = () => {
 
   return (
     <Box>
+      <Navbar isAuthenticated={!!authUser} role={authUser?.role} />
       <Suspense fallback={<LoadingSpinner />}>
         <AppRoutes authUser={authUser} />
       </Suspense>
