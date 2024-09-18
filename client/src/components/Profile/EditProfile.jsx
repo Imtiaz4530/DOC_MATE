@@ -11,6 +11,7 @@ const EditProfile = ({
   errors,
   loading,
   setEditMode,
+  role,
 }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -26,6 +27,7 @@ const EditProfile = ({
               gridProps={{ xs: 12, sm: 6 }}
               error={!!errors.name}
               helperText={errors.name ? errors.name.message : ""}
+              disabled={role === "doctor"}
             />
           )}
         />
@@ -54,6 +56,7 @@ const EditProfile = ({
               gridProps={{ xs: 12, sm: 6 }}
               error={!!errors.email}
               helperText={errors.email ? errors.email.message : ""}
+              disabled={role === "doctor"}
             />
           )}
         />
@@ -142,6 +145,7 @@ EditProfile.propTypes = {
   errors: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
   setEditMode: PropTypes.func,
+  role: PropTypes.string.isRequired,
 };
 
 export default EditProfile;

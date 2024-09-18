@@ -76,6 +76,7 @@ const Profile = () => {
               loading={loading}
               onSubmit={onSubmit}
               setEditMode={setEditMode}
+              role={profile.role || authUser.role}
             />
           ) : (
             <ProfileData

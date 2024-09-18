@@ -53,6 +53,7 @@ const useProfile = () => {
         `/api/profile/update/${authUser._id}`,
         data
       );
+      localStorage.setItem("user", JSON.stringify(response.data));
       setProfile(response.data);
       setEditMode(false);
     } catch (e) {
