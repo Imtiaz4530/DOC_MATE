@@ -2,10 +2,13 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { lazy } from "react";
 
+import PrivateRoute from "./PrivateRoute";
+
 const HomePage = lazy(() => import("../pages/Home/HomePage"));
 const Login = lazy(() => import("../pages/Auth/Login"));
 const Register = lazy(() => import("../pages/Auth/Register"));
 const Profile = lazy(() => import("../pages/Profile/Profile"));
+const DoctorList = lazy(() => import("../pages/DoctorList/DoctorList"));
 const NotFound = lazy(() => import("../pages/NotFound/NotFound"));
 const TermsAndConditions = lazy(() =>
   import("../pages/TermsAndCondition/TermsAndConditions")
@@ -27,6 +30,10 @@ const AppRoutes = ({ authUser }) => (
     <Route
       path="/profile"
       element={authUser ? <Profile /> : <Navigate to="/login" />}
+    />
+    <Route
+      path="/doctors"
+      element={<PrivateRoute element={DoctorList} allowedRoles={["patient"]} />}
     />
     <Route path="*" element={<NotFound />} />
   </Routes>
