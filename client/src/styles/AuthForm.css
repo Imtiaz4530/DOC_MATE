@@ -1,0 +1,18 @@
+.auth-form-container {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.auth-form-title {
+  color: #333;
+}
+
+.auth-form-field {
+  margin-bottom: 16px;
+}
+
+.auth-form-button {
+  margin-top: 24px;
+}
