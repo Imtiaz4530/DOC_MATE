@@ -9,6 +9,12 @@ dotenv.config();
 
 //Routers
 import authRouter from "./routes/auth.routes.js";
+import profileRouter from "./routes/profile.routes.js";
+import appointmentRouter from "./routes/appointment.routes.js";
+import doctorRouter from "./routes/doctor.routes.js";
+import chatRouter from "./routes/chat.routes.js";
+import userRouter from "./routes/user.routes.js";
+import notificationRouter from "./routes/notification.routes.js";
 
 const __dirname = path.resolve();
 
@@ -24,6 +30,12 @@ app.use(
 app.use("/server/uploads/files", express.static("server/uploads/files"));
 
 app.use("/api/auth", authRouter);
+app.use("/api/profile", profileRouter);
+app.use("/api/appointments", appointmentRouter);
+app.use("/api/doctors", doctorRouter);
+app.use("/api/chats", chatRouter);
+app.use("/api/users", userRouter);
+app.use("/api/notifications", notificationRouter);
 app.get("/health", (req, res) => {
   res.status(200).json({
     status: "ok",
