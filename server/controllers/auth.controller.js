@@ -3,6 +3,7 @@ import { validationResult } from "express-validator";
 import validator from "validator";
 
 import User from "../models/user.model.js";
+import Doctor from "../models/doctor.model.js";
 import generateTokenAndSetCookie from "../utils/generateToken.js";
 
 export const registerController = async (req, res) => {
@@ -40,7 +41,8 @@ export const registerController = async (req, res) => {
       return res.status(400).json({ error: "Your role must be patient." });
     }
 
-    if (role === "doctor") {
+    const doctor = await Doctor.findOne({ email });
+    if (!doctor && role === "doctor") {
       return res.status(400).json({ error: "Your role must be patient." });
     }
 
